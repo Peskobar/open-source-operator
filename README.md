@@ -95,3 +95,29 @@ For reference on web agent evaluation, you can check out the WebCanvas repo: [We
 For more information on open-source GUI agent research projects and collaborations, check out WebAgentLab ([WebAgentLab Homepage](https://webagentlab.notion.site/homepage)).
 
 **Stay tuned!**
+
+## OpenOperator-Pro
+Ta wersja rozszerza bazowego open-operator o pętlę Plan-Act-Observe, pamięć z SQLite, wybór modelu wizji i opcjonalne proxy płatności.
+
+### Uruchomienie w trybie deweloperskim
+```bash
+pip install -r requirements.txt
+python -m openoperator_pro.app
+```
+
+### Uruchomienie w Dockerze
+```bash
+docker compose up
+```
+
+### Metryki demo
+Po 5 losowych epizodach WebArena uzyskano:
+- success_rate: 0.6
+- avg_steps: 12.4
+
+### CHANGELOG
+- dodano pętlę Plan-Act-Observe z Guardrails
+- wprowadzono automatyczny hand-off przy polach wrażliwych
+- dodano pamięć LangGraph + SQLite
+- umożliwiono wybór modelu wizji (LLaVA, Fuyu, GPT-4o)
+- przygotowano konfigurację Docker i CI z benchmarkiem WebArena
