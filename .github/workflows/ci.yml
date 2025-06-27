@@ -1,0 +1,22 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir -r requirements.txt
+          playwright install --with-deps chromium
+      - name: Run WebArena benchmark
+        run: |
+          python benchmarks/run_webarena.py --episodes 50 --report results.json
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark
+          path: results.json

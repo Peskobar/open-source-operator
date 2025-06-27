@@ -95,3 +95,23 @@ For reference on web agent evaluation, you can check out the WebCanvas repo: [We
 For more information on open-source GUI agent research projects and collaborations, check out WebAgentLab ([WebAgentLab Homepage](https://webagentlab.notion.site/homepage)).
 
 **Stay tuned!**
+
+## OpenOperator-Pro
+Ta wersja dodaje pętlę Plan-Act-Observe z Guardrails, pamięć SQLite oraz opcjonalne proxy płatności. Wybór modelu wizji następuje w interfejsie Gradio.
+
+### Szybki start
+```bash
+pip install -r requirements.txt
+playwright install --with-deps
+python app.py
+```
+
+### Docker
+```bash
+docker compose up --build
+
+```
+### Demo wyniki (5 epizodów WebArena)
+Success rate: 0.6
+Średnia liczba kroków: 12.4
+
