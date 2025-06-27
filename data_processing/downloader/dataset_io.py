@@ -9,8 +9,8 @@ class GraphQLClient:
     def __init__(self):
         self.auth_token = None
         self.url = os.getenv('GRAPHQL_URL', 'https://www.imean.ai/graphql')
-        self.username = os.getenv('iMEAN_USERNAME')
-        self.password = os.getenv('iMEAN_PASSWORD')
+        self.username = os.getenv('IMEAN_USERNAME')
+        self.password = os.getenv('IMEAN_PASSWORD')
         self.headers = {}
         self._validate_credentials()
 

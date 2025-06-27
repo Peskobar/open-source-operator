@@ -7,7 +7,7 @@ class AnnotationDataDownloader:
         """Initialize downloader.
 
         Credentials for iMean are read from the environment variables
-        ``iMEAN_USERNAME`` and ``iMEAN_PASSWORD``.
+        ``IMEAN_USERNAME`` and ``IMEAN_PASSWORD``.
 
         Args:
             config: Configuration dictionary

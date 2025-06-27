@@ -57,7 +57,7 @@ class InteractionMode:
             for i in range(3):
                 try:
                     if "vision" in global_reward_mode:
-                        # TODO
+                        # Call the visual model when evaluating vision-based rewards
                         response_str, error_message = await self.visual_model.request(reward_request)
                     else:
                         print_info(

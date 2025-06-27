@@ -408,8 +408,8 @@ class JudgeSearchbarPromptConstructor(BasePromptConstructor):
         self.prompt_system = BasePrompts.judge_searchbar_prompt_system
         self.prompt_user = BasePrompts.judge_searchbar_prompt_user
 
-    # Build a prompt to determine whether it is a search box, and output a format that can be parsed by openai
-    # TODO decoded_result
+    # Build a prompt to determine whether it is a search box, returning a format
+    # that can be parsed by OpenAI. Decoding of the result is handled elsewhere.
     def construct(self, input_element, planning_response_action) -> list:
         self.prompt_user = Template(self.prompt_user).render(input_element=str(
             input_element), element_id=planning_response_action['element_id'],

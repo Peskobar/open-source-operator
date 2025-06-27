@@ -11,6 +11,7 @@ class DOMProcessor(BaseProcessor):
         super().__init__(config)
         self.processed_count = 0
         self.error_count = 0
+        self.valid_actions = set(config.get('valid_actions', ['click', 'type', 'hover', 'press_enter']))
     
     def process(self, raw_data: List[Dict]) -> List[Dict]:
         """Process DOM tree trajectory data"""
@@ -82,9 +83,7 @@ class DOMProcessor(BaseProcessor):
     
     def _validate_action(self, step: Dict) -> bool:
         """Validate action validity"""
-        valid_actions = {'click', 'type', 'hover', 'press_enter'}
-        
-        if step['type'] not in valid_actions:
+        if step['type'] not in self.valid_actions:
             logging.warning(f"Invalid action type: {step['type']}")
             return False
             

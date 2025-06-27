@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 async def format_converter(input_text: str, target_type: str, output_parameters: dict) -> Union[List[Any], Dict[str, Any], bool, str, float, pd.DataFrame]:
     """Convert the input text to the desired format using GPT-4"""
 
-    # TODO: This is a temporary solution for handling link lists
-    # Should be refactored to handle more general cases and different response types
+    # Temporary handling for link lists; future versions should support
+    # a wider range of response formats.
     def is_link_response(input_data: Union[str, Dict, List]) -> bool:
         """Check if the input contains link-related data"""
         try:
