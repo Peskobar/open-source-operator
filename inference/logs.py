@@ -4,15 +4,16 @@ import sys
 import time
 import colorlog
 import re
+from logging.handlers import RotatingFileHandler
 
 
 log_folder = "LOGS"
 if not os.path.exists(log_folder):
     os.makedirs(log_folder)
-log_file_name = os.path.join(
-    log_folder, time.strftime("%Y-%m-%d_%H-%M-%S") + ".log")
+log_file_name = os.path.join(log_folder, time.strftime("%Y-%m-%d_%H-%M-%S") + ".log")
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+level = os.getenv("LOG_LEVEL", "INFO").upper()
+logger.setLevel(getattr(logging, level, logging.INFO))
 
 stream_formatter = colorlog.ColoredFormatter(
     "%(asctime)s**[%(log_color)s%(levelname)s%(reset)s]**|| %(message)s",
@@ -57,7 +58,7 @@ file_formatter = Formatter(
 )
 
 
-file_handler = logging.FileHandler(log_file_name, encoding='utf-8')
+file_handler = RotatingFileHandler(log_file_name, maxBytes=1_000_000, backupCount=3, encoding='utf-8')
 file_handler.setFormatter(file_formatter)
 stream_handler = logging.StreamHandler(sys.stdout)
 stream_handler.setFormatter(stream_formatter)

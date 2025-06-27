@@ -95,7 +95,7 @@ wkrótce
 - [x] Pobieranie danych
 - [x] Przygotowanie danych do SFT – DOM Tree
 - [x] Przygotowanie danych do SFT – Vision
-- [ ] Hostowanie lokalnego modelu i inferencja na żywych stronach
+- [x] Hostowanie lokalnego modelu i inferencja na żywych stronach
 - [ ] Automatyczna ewaluacja z wykorzystaniem WebCanvas
 
 ## Poprzednie rozwiązania
@@ -115,6 +115,14 @@ playwright install --with-deps
 python app.py
 ```
 
+### Lokalne modele
+Ustaw ścieżki do pobranych modeli, np.:
+```bash
+export LOCAL_LLM_PATH="models/llm"
+export VISION_MODEL_PATH="models/vision"
+```
+Opcjonalnie ustaw `MAX_STEPS` oraz `LOG_LEVEL`. Następnie uruchom aplikację jak wyżej lub w Dockerze.
+
 ### Docker
 ```bash
 docker compose up --build
@@ -123,4 +131,8 @@ docker compose up --build
 ### Demo wyniki (5 epizodów WebArena)
 Success rate: 0.6
 Średnia liczba kroków: 12.4
+
+### Narzędzia dodatkowe
+- CLI: `oss-op --url <url> --task <instrukcja>`
+- Monitoring zasobów: `python scripts/monitor_resources.py`
 

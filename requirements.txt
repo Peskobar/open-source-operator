@@ -20,3 +20,8 @@ beautifulsoup4
 pyyaml
 tomli
 Pillow
+
+accelerate
+sentencepiece
+psutil
+faiss-cpu
