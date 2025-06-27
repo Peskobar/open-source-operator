@@ -19,3 +19,4 @@ pandas
 beautifulsoup4
 pyyaml
 tomli
+Pillow

@@ -6,6 +6,9 @@ from data_processing.preprocessor.dom_processor import DOMProcessor
 from data_processing.downloader.api_client import AnnotationDataDownloader
 from data_processing.converter.data_converter import SFTConverter
 
+from data_processing.preprocessor.vision_processor import VisionProcessor
+from data_processing.converter.vision_converter import VisionSFTConverter
+
 def load_config(config_path: str) -> dict:
     """Load configuration file"""
     with open(config_path, 'r', encoding='utf-8') as f:
@@ -53,15 +56,17 @@ def main():
         logging.error(f"Error downloading data: {str(e)}")
         return
     
+    mode = config.get('mode', 'dom_tree')
+
     # 4. Preprocess data
     try:
-        processor = DOMProcessor(config['data_processing'])
+        if mode == 'vision':
+            processor = VisionProcessor(config['data_processing'])
+        else:
+            processor = DOMProcessor(config['data_processing'])
         processed_data = processor.process(raw_data)
-        
-        processed_data_path = os.path.join(
-            config['data_processing']['save_path'],
-            'processed_data.json'
-        )
+
+        processed_data_path = config['data_processing']['save_path']
         processor.save_processed_data(processed_data, processed_data_path)
         logging.info(f"Processed data saved to {processed_data_path}")
         
@@ -71,19 +76,27 @@ def main():
 
     # 5. Convert to SFT format
     try:
-        converter = SFTConverter(config['converter'])
-    
+        if mode == 'vision':
+            converter = VisionSFTConverter(config['converter'])
+        else:
+            converter = SFTConverter(config['converter'])
+
         processed_data = load_processed_data(processed_data_path)
-        logging.info(f"Loaded {len(processed_data)} processed trajectories")
-        
+        if mode == 'vision':
+            logging.info(
+                f"Loaded {len(processed_data.get('planning_data', []))} planning samples")
+        else:
+            logging.info(f"Loaded {len(processed_data)} processed trajectories")
+
         sft_data = converter.convert_to_sft_format(processed_data)
-        
-        sft_data_path = os.path.join(
-            config['converter']['save_path'],
-            'sft_data.json'
-        )
-        converter.save_sft_data(sft_data, sft_data_path)
-        logging.info(f"SFT data saved to {sft_data_path}")
+
+        sft_output_dir = config['converter']['save_path']
+        if mode == 'vision':
+            converter.save_sft_data(sft_data, sft_output_dir)
+        else:
+            sft_data_path = os.path.join(sft_output_dir, 'sft_data.json')
+            converter.save_sft_data(sft_data, sft_data_path)
+            logging.info(f"SFT data saved to {sft_data_path}")
         
         logging.info(f"Conversion completed. Generated {len(sft_data)} SFT examples")
         logging.info("Data processing pipeline completed successfully")

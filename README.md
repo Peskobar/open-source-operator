@@ -79,7 +79,9 @@ Jeśli logujesz się do iMean Builder przy pomocy konta Google, hasło możesz u
 
 W trybie Dom Tree wystarczy uruchomić `python main.py`.
 
-Wersja dla trybu Vision pojawi się wkrótce.
+Aby przygotować dane w trybie Vision, ustaw `mode: "vision"` w pliku
+`configs/config.yaml` i uruchom `python main.py`. Przetworzone przykłady zostaną
+zapisane w katalogu `data/sft`.
 
 
 ## Trenowanie natywnego modelu agenta
@@ -92,7 +94,7 @@ wkrótce
 - [x] Instrukcja oznaczania danych trajektorii
 - [x] Pobieranie danych
 - [x] Przygotowanie danych do SFT – DOM Tree
-- [ ] Przygotowanie danych do SFT – Vision
+- [x] Przygotowanie danych do SFT – Vision
 - [ ] Hostowanie lokalnego modelu i inferencja na żywych stronach
 - [ ] Automatyczna ewaluacja z wykorzystaniem WebCanvas
 
