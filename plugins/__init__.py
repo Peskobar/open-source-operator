@@ -1,15 +1,4 @@
-import importlib
-import os
-import pkgutil
+from src.plugins import Plugin, load_plugins
 
-
-def load_plugins():
-    plugins = []
-    pkg_dir = os.path.dirname(__file__)
-    for mod in pkgutil.iter_modules([pkg_dir]):
-        if mod.name.startswith('_'):
-            continue
-        module = importlib.import_module(f"plugins.{mod.name}")
-        if hasattr(module, 'register'):
-            plugins.append(module.register())
-    return plugins
+# expose plugin interface for plugin modules
+__all__ = ["Plugin", "load_plugins"]

@@ -1,4 +1,7 @@
-import faiss
+try:
+    import faiss
+except Exception:  # pragma: no cover - optional dependency
+    faiss = None
 import numpy as np
 
 
@@ -6,6 +9,8 @@ class VectorDB:
     """Simple FAISS-based vector storage for embeddings."""
 
     def __init__(self, dim: int):
+        if faiss is None:
+            raise ImportError("faiss is required for VectorDB")
         self.index = faiss.IndexFlatL2(dim)
         self.meta = []
 

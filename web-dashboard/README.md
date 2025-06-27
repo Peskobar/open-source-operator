@@ -1,4 +1,8 @@
 # Web Dashboard
 
-This minimal React + Tailwind dashboard visualizes agent history.
-Open `index.html` in a browser.
+Simple React + Tailwind dashboard showing recent log lines. Run:
+```bash
+npm install
+npm run dev
+```
+Then open the printed URL in your browser.

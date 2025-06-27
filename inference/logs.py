@@ -2,12 +2,13 @@ import logging
 import os
 import sys
 import time
-import colorlog
 import re
 from logging.handlers import RotatingFileHandler
 
+import colorlog
 
-log_folder = "LOGS"
+
+log_folder = os.getenv("LOG_DIR", "LOGS")
 if not os.path.exists(log_folder):
     os.makedirs(log_folder)
 log_file_name = os.path.join(log_folder, time.strftime("%Y-%m-%d_%H-%M-%S") + ".log")
@@ -56,7 +57,6 @@ file_formatter = Formatter(
     secondary_log_colors={},
     style='%'
 )
-
 
 file_handler = RotatingFileHandler(log_file_name, maxBytes=1_000_000, backupCount=3, encoding='utf-8')
 file_handler.setFormatter(file_formatter)

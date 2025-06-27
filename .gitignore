@@ -51,6 +51,7 @@ temp_ref/
 
 # Data
 data/
+!tests/data/
 *.json
 *.csv
 *.xlsx
@@ -105,3 +106,4 @@ wheels/
 *.egg
 MANIFEST
 .gradio/
+node_modules/
