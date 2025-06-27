@@ -25,3 +25,4 @@ accelerate
 sentencepiece
 psutil
 faiss-cpu
+colorlog

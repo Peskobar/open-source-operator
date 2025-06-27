@@ -133,6 +133,28 @@ Success rate: 0.6
 Średnia liczba kroków: 12.4
 
 ### Narzędzia dodatkowe
-- CLI: `oss-op --url <url> --task <instrukcja>`
-- Monitoring zasobów: `python scripts/monitor_resources.py`
+- CLI: `oss-op run --url <url> --task <instrukcja>`
+- Uruchom monitoring zasobów: `oss-op monitor`
+- Testy jednostkowe: `oss-op test`
+- Panel React: `cd web-dashboard && npm install && npm run dev`
 
+
+### Tworzenie pluginu
+Dodaj moduł w katalogu `plugins/` zwracający obiekt `Plugin`.
+Przykład:
+```python
+from plugins import Plugin
+class MyPlugin(Plugin):
+    def register_actions(self):
+        return {"hello": lambda: "world"}
+
+def register():
+    return MyPlugin()
+```
+
+Przykładowy plik konfiguracyjny (`configs/config.yaml`):
+```yaml
+memory:
+  mode: sqlite
+  path: openoperator.db
+```

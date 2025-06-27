@@ -4,11 +4,11 @@ import os
 import gradio as gr
 
 from agent.loop import run_agent
-from memory.sqlite_graph import ConversationMemory
+from memory import get_memory
 
 
 def start(url: str, task: str, model: str):
-    memory = ConversationMemory("openoperator.db")
+    memory = get_memory({"path": "openoperator.db"})
     max_steps = int(os.getenv("MAX_STEPS", "20"))
     p = mp.Process(target=lambda: asyncio.run(run_agent(url, task, model, memory, max_steps=max_steps)))
     p.start()

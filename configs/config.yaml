@@ -1,5 +1,8 @@
 # Global Configuration
 log_dir: "logs"
+memory:
+  mode: "sqlite"  # or "vector"
+  path: "openoperator.db"
 
 # Data Download Configuration
 data_download:

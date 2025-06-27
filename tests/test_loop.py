@@ -27,6 +27,9 @@ if 'transformers' not in sys.modules:
 if 'torch' not in sys.modules:
     sys.modules['torch'] = types.ModuleType('torch')
 
+if 'numpy' not in sys.modules:
+    sys.modules['numpy'] = types.ModuleType('numpy')
+
 if 'colorlog' not in sys.modules:
     fake_cl = types.ModuleType('colorlog')
     class CF:
@@ -38,7 +41,7 @@ if 'colorlog' not in sys.modules:
     sys.modules['colorlog'] = fake_cl
 
 from agent.loop import parse_action, run_agent
-from memory.sqlite_graph import ConversationMemory
+from memory import get_memory
 
 
 class TestParseAction(unittest.TestCase):
@@ -54,7 +57,7 @@ class TestParseAction(unittest.TestCase):
 
 class TestRunAgent(unittest.IsolatedAsyncioTestCase):
     async def test_run_agent_mock_playwright(self):
-        memory = ConversationMemory(":memory:")
+        memory = get_memory({"path": ":memory:"})
         fake_page = AsyncMock()
         fake_page.content.return_value = "<html></html>"
         fake_page.screenshot = AsyncMock()
