@@ -32,5 +32,25 @@ class HistoryMemory:
         return previous_trace_prompt
 
     @staticmethod
-    def construct_cache(cache_info: list):
-        pass
+    def construct_cache(cache_info: list, max_steps: int = 5):
+        """Build a simple cache from a list of interaction steps.
+
+        Parameters
+        ----------
+        cache_info : list
+            Sequence of dictionaries describing previous steps.
+        max_steps : int, optional
+            Maximum number of recent steps to keep, by default 5.
+
+        Returns
+        -------
+        list
+            Trimmed list containing the most recent steps.
+        """
+
+        if not isinstance(cache_info, list):
+            raise ValueError("cache_info must be a list")
+        if max_steps <= 0:
+            raise ValueError("max_steps must be positive")
+
+        return cache_info[-max_steps:]

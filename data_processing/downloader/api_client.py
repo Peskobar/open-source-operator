@@ -4,19 +4,17 @@ from .dataset_io import GraphQLClient
 
 class AnnotationDataDownloader:
     def __init__(self, config):
-        """
-        Initialize downloader
+        """Initialize downloader.
+
+        Credentials for iMean are read from the environment variables
+        ``iMEAN_USERNAME`` and ``iMEAN_PASSWORD``.
+
         Args:
             config: Configuration dictionary
         """
         self.challenge_id = config.get('challenge_id')
         self.save_path = config.get('save_path')
         
-        # Set environment variables if credentials provided
-        if 'username' in config:
-            os.environ['iMEAN_USERNAME'] = config['username']
-        if 'password' in config:
-            os.environ['iMEAN_PASSWORD'] = config['password']
             
         self.client = GraphQLClient()
         
