@@ -1,0 +1,8 @@
+schema_version: 1
+filters:
+  - name: sensitive-phrases
+    type: regex
+    pattern: "(password|credit card|cvv|iban)"
+    on_detect: block
+consequences:
+  block: ACTION_BLOCKED
