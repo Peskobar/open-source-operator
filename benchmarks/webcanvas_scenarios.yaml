@@ -1,0 +1,12 @@
+- name: login_test
+  url: https://example.com/login
+  success_selector: ".dashboard"
+  max_steps: 5
+  description: Simple login flow
+  credentials:
+    username: user
+    password: pass
+- name: browse
+  url: https://example.com
+  success_selector: "#main"
+  max_steps: 3

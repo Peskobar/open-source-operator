@@ -88,7 +88,42 @@ zapisane w katalogu `data/sft`.
 wkrótce
 
 ## Ewaluacja natywnego modelu agenta
-wkrótce
+Automatyczną ewaluację można przeprowadzić przy pomocy WebCanvas.
+
+### Definicja scenariuszy
+Scenariusze testowe są zapisane w pliku `benchmarks/webcanvas_scenarios.yaml`:
+
+```yaml
+- name: login_test
+  url: https://example.com/login
+  success_selector: ".dashboard"
+  max_steps: 5
+  description: Simple login flow
+  credentials:
+    username: user
+    password: pass
+```
+
+Każdy scenariusz musi zawierać `name`, `url`, `success_selector` oraz `max_steps`.
+Opcjonalnie można dodać `description` i `credentials`.
+
+### Uruchamianie lokalne
+Po zainstalowaniu Playwrighta można przeprowadzić ewaluację komendami:
+
+```bash
+playwright install --with-deps
+python -m benchmarks.evaluate_webcanvas \
+  --scenarios benchmarks/webcanvas_scenarios.yaml \
+  --output results/webcanvas_report.csv
+python -m benchmarks.check_threshold results/webcanvas_report.csv
+```
+
+Raport zostanie zapisany w `results/webcanvas_report.csv`.
+
+### Integracja CI
+W ramach workflow GitHub Actions raport z ewaluacji jest tworzony
+automatycznie i publikowany jako artefakt `webcanvas-results`.
+Można go pobrać z zakładki *Actions* po zakończonym przebiegu.
 
 ## Do zrobienia
 - [x] Instrukcja oznaczania danych trajektorii
@@ -96,7 +131,7 @@ wkrótce
 - [x] Przygotowanie danych do SFT – DOM Tree
 - [x] Przygotowanie danych do SFT – Vision
 - [x] Hostowanie lokalnego modelu i inferencja na żywych stronach
-- [ ] Automatyczna ewaluacja z wykorzystaniem WebCanvas
+- [x] Automatyczna ewaluacja z wykorzystaniem WebCanvas
 
 ## Poprzednie rozwiązania
 Przykład ewaluacji agentów sieciowych znajdziesz w repozytorium WebCanvas: [WebCanvas](https://github.com/iMeanAI/WebCanvas)

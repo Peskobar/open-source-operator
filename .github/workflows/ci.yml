@@ -12,6 +12,8 @@ jobs:
         run: |
           pip install --no-cache-dir -r requirements.txt
           playwright install --with-deps chromium
+      - name: Run tests
+        run: pytest -q
       - name: Run WebArena benchmark
         run: |
           python benchmarks/run_webarena.py --episodes 50 --report results.json
@@ -20,3 +22,17 @@ jobs:
         with:
           name: benchmark
           path: results.json
+      - name: WebCanvas evaluation
+        run: |
+          python -m benchmarks.evaluate_webcanvas \
+            --scenarios benchmarks/webcanvas_scenarios.yaml \
+            --output results/webcanvas_report.csv
+        env:
+          CANVAS_API_KEY: ${{ secrets.CANVAS_API_KEY }}
+      - name: Upload WebCanvas report
+        uses: actions/upload-artifact@v3
+        with:
+          name: webcanvas-results
+          path: results/webcanvas_report.csv
+      - name: Check WebCanvas threshold
+        run: python -m benchmarks.check_threshold results/webcanvas_report.csv

@@ -5,11 +5,56 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="p-4">
   <div id="app"></div>
   <script type="text/javascript">
-    const App = () => React.createElement('div', null, 'History placeholder');
+    const App = () => {
+      const [rows, setRows] = React.useState([]);
+      React.useEffect(() => {
+        fetch('webcanvas_report.csv')
+          .then(r => r.text())
+          .then(t => {
+            const lines = t.trim().split('\n');
+            const headers = lines.shift().split(',');
+            const data = lines.map(l => {
+              const parts = l.split(',');
+              const obj = {};
+              headers.forEach((h, i) => obj[h] = parts[i]);
+              obj.success = obj.success === 'True';
+              obj.steps = Number(obj.steps);
+              obj.duration = Number(obj.duration);
+              return obj;
+            });
+            setRows(data);
+            const successRate = data.filter(d => d.success).length / data.length;
+            const avgTime = data.reduce((a,b)=>a+b.duration,0)/data.length;
+            const avgSteps = data.reduce((a,b)=>a+b.steps,0)/data.length;
+            new Chart(document.getElementById('chart'),{
+              type:'bar',
+              data:{labels:['Success %','Avg time','Avg steps'],datasets:[{label:'Metrics',data:[successRate*100,avgTime,avgSteps]}]},
+              options:{scales:{y:{beginAtZero:true}}}
+            });
+          });
+      },[]);
+      return React.createElement('div', null,
+        React.createElement('h2',{className:'text-xl font-bold mb-2'},'WebCanvas Report'),
+        React.createElement('table',{className:'table-auto border mb-4'},
+          React.createElement('thead',null,
+            React.createElement('tr',null,
+              ['name','success','steps','duration'].map(h=>React.createElement('th',{key:h,className:'border px-2'},h))
+            )
+          ),
+          React.createElement('tbody',null,
+            rows.map((r,i)=>React.createElement('tr',{key:i},[
+              r.name,r.success.toString(),r.steps,r.duration.toFixed(2)
+            ].map((v,j)=>React.createElement('td',{key:j,className:'border px-2'},v))))
+          )
+        ),
+        React.createElement('canvas',{id:'chart',width:400,height:200})
+      );
+    };
     ReactDOM.render(React.createElement(App), document.getElementById('app'));
   </script>
 </body>
