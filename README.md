@@ -41,6 +41,13 @@ For the browser environment, you can use [browserbase](https://www.browserbase.c
 export BROWSERBASE_API_KEY=your_api_key
 ```
 
+Set your iMean Builder credentials as environment variables:
+
+```bash
+export IMEAN_USERNAME=your_username
+export IMEAN_PASSWORD=your_password
+```
+
 
 ### Initialize the base agent
 ```bash
@@ -61,7 +68,9 @@ Follow the step wise instruction below:
 5. Create a private challenge on [WebCanvas website](https://www.imean.ai/web-canvas) and connect it with the channel in the last step. -> How to: [Docs](https://webcanvas.gitbook.io/webcanvas-docs/3.-evaluation)
 6. Get the challenge id and use it to download all the data from the iMean Builder Platform.
 
-Set the challenge id, iMean Builder username, password in `configs/config.yaml`.
+Set the challenge id in `configs/config.yaml` and provide your iMean Builder
+credentials via the `IMEAN_USERNAME` and `IMEAN_PASSWORD` environment
+variables.
 
 Just run `python main.py` to download the data. Now you can download some sample data by default challenge id.
 

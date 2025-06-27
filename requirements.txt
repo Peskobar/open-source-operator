@@ -12,3 +12,10 @@ fastapi
 uvicorn
 stripe
 pydantic
+requests
+requests_toolbelt
+json5
+pandas
+beautifulsoup4
+pyyaml
+tomli
