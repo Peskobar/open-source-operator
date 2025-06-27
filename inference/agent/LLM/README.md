@@ -1,8 +1,8 @@
-### Setup Your API Keys
+### Konfiguracja kluczy API
 
-#### OpenAI API Keys
+#### Klucze API OpenAI
 
-For setting up OpenAI API keys, add your API key to your environment variables:
+Aby skonfigurować klucze API OpenAI, dodaj je do zmiennych środowiskowych:
 
 MacOS/Linux:
 
@@ -16,11 +16,11 @@ Windows:
 setx OPENAI_API_KEY "your-api-key-here"
 ```
 
-Visit [Quickstart tutorial - OpenAI API](https://platform.openai.com/docs/quickstart?context=python) for more details.
+Więcej informacji znajdziesz w [samouczku Quickstart - OpenAI API](https://platform.openai.com/docs/quickstart?context=python).
 
-#### Claude API Keys
+#### Klucze API Claude
 
-For setting up Claude API keys, add your API key to your environment variables:
+Aby ustawić klucze API Claude, dodaj je do zmiennych środowiskowych:
 
 MacOS/Linux:
 
@@ -33,9 +33,9 @@ Windows:
 ```text
 setx ANTHROPIC_API_KEY "your-api-key-here"
 ```
-#### Gemini API Keys
+#### Klucze API Gemini
 
-For setting up Gemini API keys, add your API key to your environment variables:
+Aby ustawić klucze API Gemini, dodaj je do zmiennych środowiskowych:
 
 MacOS/Linux:
 
@@ -49,9 +49,9 @@ Windows:
 setx GOOGLE_API_KEY "your-api-key-here"
 ```
 
-#### Together AI API Keys
+#### Klucze API Together AI
 
-For setting up Together AI API keys, add your API key to your environment variables:
+Aby ustawić klucze API Together AI, dodaj je do zmiennych środowiskowych:
 
 MacOS/Linux:
 
@@ -65,4 +65,4 @@ Windows:
 setx TOGETHER_API_KEY "your-api-key-here"
 ```
 
-Make sure to replace `your-api-key-here` with your actual API keys. This ensures that the necessary APIs are accessible for the features you intend to use in the repository.
+Pamiętaj, aby zastąpić `your-api-key-here` rzeczywistymi kluczami API. Dzięki temu zapewnisz dostęp do funkcji wymagających danych interfejsów API.

@@ -1,4 +1,4 @@
-<h1 align="center">Open-Operator: Open-Source Version of OpenAI Operator</h1>
+<h1 align="center">Open-Operator: Otwarta wersja OpenAI Operator</h1>
 
 
 <p align="center">
@@ -13,35 +13,35 @@
 
 # open-operator
 
-This project aims to provide the open-source community with an easy-to-use system for building, self-hosting, and evaluating web agent computer-use models. Our goal is to offer an alternative to the $200/month ChatGPT Pro and cloud-based, uncontrolled execution environments.
+Ten projekt ma na celu dostarczenie społeczności open-source łatwego w użyciu systemu do budowania, samodzielnego hostowania i oceny modeli agentów sieciowych. Naszym celem jest zaoferowanie alternatywy dla ChatGPT Pro kosztującego 200 dolarów miesięcznie oraz dla niekontrolowanych środowisk chmurowych.
 
-With open-operator, you can:
-- Annotate your web trajectory data.
-- Export the data for further processing.
-- Prepare the data for supervised fine-tuning (SFT).
-- Host and deploy the model to interact with live websites.
-- Automatically evaluate the model’s performance.
+Za pomocą open-operator możesz:
+- oznaczać swoje dane z nagranych sesji w przeglądarce,
+- eksportować dane do dalszego przetwarzania,
+- przygotować je do fine-tuningu nadzorowanego (SFT),
+- hostować i wdrażać model do interakcji z prawdziwymi witrynami,
+- automatycznie oceniać skuteczność modelu.
 
-We believe in empowering developers to have complete control over their web agents, from training to deployment and evaluation.
+Wierzymy, że deweloperzy powinni mieć pełną kontrolę nad swoimi agentami – od treningu, przez wdrożenie, po ewaluację.
 
-## Roadmap
+## Plan rozwoju
 ![Roadmap](src/roadmap.png)
-Briefly describe the roadmap of the project. Green part will be included in this repo.
+Poniżej przedstawiono krótki plan rozwoju projektu. Zielona część będzie dostępna w tym repozytorium.
 
-## Run your Base Agent Using Open-Operator
-### Prepare the environment
+## Uruchamianie podstawowego agenta w Open-Operator
+### Przygotowanie środowiska
 ```bash
 conda create -n open-operator python=3.11
 pip install -r requirements.txt
 ```
 
-For the browser environment, you can use [browserbase](https://www.browserbase.com/) to setup the following environment variables.
+W przypadku środowiska przeglądarkowego możesz użyć [browserbase](https://www.browserbase.com/), aby ustawić następujące zmienne środowiskowe.
 
 ```bash
 export BROWSERBASE_API_KEY=your_api_key
 ```
 
-Set your iMean Builder credentials as environment variables:
+Ustaw dane logowania do iMean Builder jako zmienne środowiskowe:
 
 ```bash
 export IMEAN_USERNAME=your_username
@@ -49,61 +49,59 @@ export IMEAN_PASSWORD=your_password
 ```
 
 
-### Initialize the base agent
+### Inicjalizacja podstawowego agenta
 ```bash
 python inference/app.py
 ```
-You can select the base model you want to use in the dropdown menu.(From Anthropic, Google, OpenAI, etc.)
+Model bazowy możesz wybrać w menu rozwijanym (Anthropic, Google, OpenAI itp.).
 
 ![Open-Operator](src/ui.png)
 
-Then start your first experience with Open-Operator!
+Rozpocznij pierwsze doświadczenia z Open-Operator!
 
-## Data Annotation and Downloading
-Follow the step wise instruction below:
-1. Download the latest iMean builder extension here: [iMean Builder](https://drive.google.com/file/d/1BpLOQ9M41rdc6VYY-1Aes1lhzo5-LdiH/view?usp=sharing)
-2. Install the extension on your browser.
-3. Record your web trajectory data you want to train your model on in the **natural** way you interact with the website. Edit the title of each data.
-4. Create a private channel on [iMean Builder Platform](https://www.imean.ai/builder) and move all the data into that channel. -> How to: [Docs](https://webcanvas.gitbook.io/webcanvas-docs/3.-evaluation)
-5. Create a private challenge on [WebCanvas website](https://www.imean.ai/web-canvas) and connect it with the channel in the last step. -> How to: [Docs](https://webcanvas.gitbook.io/webcanvas-docs/3.-evaluation)
-6. Get the challenge id and use it to download all the data from the iMean Builder Platform.
+## Oznaczanie i pobieranie danych
+Kroki do wykonania:
+1. Pobierz najnowsze rozszerzenie iMean Builder: [iMean Builder](https://drive.google.com/file/d/1BpLOQ9M41rdc6VYY-1Aes1lhzo5-LdiH/view?usp=sharing)
+2. Zainstaluj rozszerzenie w swojej przeglądarce.
+3. Zarejestruj dane trajektorii przeglądania w **naturalny** sposób interakcji ze stroną i edytuj tytuły nagrań.
+4. Utwórz prywatny kanał na [platformie iMean Builder](https://www.imean.ai/builder) i przenieś tam wszystkie dane. Instrukcja: [Docs](https://webcanvas.gitbook.io/webcanvas-docs/3.-evaluation)
+5. Utwórz prywatne wyzwanie na stronie [WebCanvas](https://www.imean.ai/web-canvas) i powiąż je z utworzonym kanałem. Instrukcja: [Docs](https://webcanvas.gitbook.io/webcanvas-docs/3.-evaluation)
+6. Pobierz identyfikator wyzwania i użyj go do pobrania wszystkich danych z platformy iMean Builder.
 
-Set the challenge id in `configs/config.yaml` and provide your iMean Builder
-credentials via the `IMEAN_USERNAME` and `IMEAN_PASSWORD` environment
-variables.
+Ustaw identyfikator wyzwania w `configs/config.yaml` oraz podaj dane logowania iMean Builder w zmiennych środowiskowych `IMEAN_USERNAME` i `IMEAN_PASSWORD`.
 
-Just run `python main.py` to download the data. Now you can download some sample data by default challenge id.
+Uruchom `python main.py`, aby pobrać dane. Domyślne ID wyzwania umożliwia pobranie przykładowych danych.
 
-If you log in iMean Builder with Google account, you can set the password on the profile page.
+Jeśli logujesz się do iMean Builder przy pomocy konta Google, hasło możesz ustawić na stronie profilu.
 
 
-## Data Pre-processing
+## Przetwarzanie danych
 
-For Dom Tree mode, Just run `python main.py`
+W trybie Dom Tree wystarczy uruchomić `python main.py`.
 
-For Vision mode, code coming soon.
+Wersja dla trybu Vision pojawi się wkrótce.
 
 
-## Native Agent Model Training
-coming soon
+## Trenowanie natywnego modelu agenta
+wkrótce
 
-## Native Agent Model Evaluation
-coming soon
+## Ewaluacja natywnego modelu agenta
+wkrótce
 
-## TODO
-- [x] Instruction on how to annotate your web trajectory data
-- [x] Data downloading
-- [x] Pre-process the data to be SFT-ready - DOM Tree
-- [ ] Pre-process the data to be SFT-ready - Vision
-- [ ] Host the local model and inference on live websites
-- [ ] Automatically evaluation using WebCanvas framework
+## Do zrobienia
+- [x] Instrukcja oznaczania danych trajektorii
+- [x] Pobieranie danych
+- [x] Przygotowanie danych do SFT – DOM Tree
+- [ ] Przygotowanie danych do SFT – Vision
+- [ ] Hostowanie lokalnego modelu i inferencja na żywych stronach
+- [ ] Automatyczna ewaluacja z wykorzystaniem WebCanvas
 
-## Previous Solutions
-For reference on web agent evaluation, you can check out the WebCanvas repo: [WebCanvas](https://github.com/iMeanAI/WebCanvas)
+## Poprzednie rozwiązania
+Przykład ewaluacji agentów sieciowych znajdziesz w repozytorium WebCanvas: [WebCanvas](https://github.com/iMeanAI/WebCanvas)
 
-For more information on open-source GUI agent research projects and collaborations, check out WebAgentLab ([WebAgentLab Homepage](https://webagentlab.notion.site/homepage)).
+Więcej informacji o projektach badawczych nad agentami GUI open-source znajdziesz w WebAgentLab ([WebAgentLab Homepage](https://webagentlab.notion.site/homepage)).
 
-**Stay tuned!**
+**Bądź na bieżąco!**
 
 ## OpenOperator-Pro
 Ta wersja dodaje pętlę Plan-Act-Observe z Guardrails, pamięć SQLite oraz opcjonalne proxy płatności. Wybór modelu wizji następuje w interfejsie Gradio.
