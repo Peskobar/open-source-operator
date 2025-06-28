@@ -1,0 +1,53 @@
+:root {
+    --bg: #f8fafc;
+    --fg: #1e293b;
+    --accent: #4f46e5;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--accent);
+    color: white;
+}
+
+.controls button {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+#xr-canvas {
+    width: 100%;
+    height: 400px;
+    background: #000;
+}
