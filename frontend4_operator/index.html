@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Operator Dashboard 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Open Operator 4</h1>
+        <div class="controls">
+            <button id="voice-btn" title="Start voice commands">🎤</button>
+        </div>
+    </header>
+
+    <main class="grid">
+        <section id="metrics" class="card">
+            <h2>Metrics</h2>
+            <ul id="metrics-list"></ul>
+        </section>
+
+        <section id="agents" class="card">
+            <h2>Agents</h2>
+            <ul id="agents-list"></ul>
+        </section>
+
+        <section id="canvas-wrapper" class="card full">
+            <h2>3D View</h2>
+            <canvas id="xr-canvas"></canvas>
+        </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
